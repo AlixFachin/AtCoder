@@ -1,0 +1,82 @@
+{
+  "contest": {
+    "id": "abc246",
+    "title": "AtCoder Beginner Contest 246",
+    "url": "https://atcoder.jp/contests/abc246"
+  },
+  "tasks": [
+    {
+      "id": "abc246_a",
+      "label": "A",
+      "title": "Four Points",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc246_b",
+      "label": "B",
+      "title": "Get Closer",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc246_c",
+      "label": "C",
+      "title": "Coupon",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc246_d",
+      "label": "D",
+      "title": "2-variable Function",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc246_e",
+      "label": "E",
+      "title": "Bishop 2",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc246_f",
+      "label": "F",
+      "title": "typewriter",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_f"
+    },
+    {
+      "id": "abc246_g",
+      "label": "G",
+      "title": "Game on Tree 3",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_g"
+    },
+    {
+      "id": "abc246_h",
+      "label": "Ex",
+      "title": "01? Queries",
+      "url": "https://atcoder.jp/contests/abc246/tasks/abc246_h"
+    }
+  ]
+}

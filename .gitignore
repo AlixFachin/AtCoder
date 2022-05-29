@@ -1,0 +1,21 @@
+
+# Ignore all (to ignore binaries)
+*
+# Un-ignore the files with extension
+!*.*
+# Un-ignore folders
+!*/
+
+.DS_Store
+
+*.o
+*.bin
+
+test.cpp
+main.h
+makefile
+
+!/template_cpp/*.*
+!/template_cpp/makefile
+
+.vscode
