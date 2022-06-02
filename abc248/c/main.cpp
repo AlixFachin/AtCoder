@@ -34,6 +34,7 @@ void logVector(string vectorName, vector<T> *v)
 template <typename K, typename V>
 void logMap(string mapName, unordered_map<K, V> *s)
 {
+#ifdef TEST
     cerr << "The content of " << mapName << " is:" << endl;
     cerr << "{";
     for (const auto &key_value : *s)
@@ -42,6 +43,7 @@ void logMap(string mapName, unordered_map<K, V> *s)
     }
 
     cerr << "}" << endl;
+#endif
 }
 
 void log(string s)
@@ -67,7 +69,7 @@ ll dp(int n, int m, int k)
 
     if (n == 1)
     {
-        return k;
+        return min(k, m);
     }
 
     if (memo[n][k] != -1)
@@ -77,10 +79,10 @@ ll dp(int n, int m, int k)
     }
 
     ll res = 0;
-    for (int j = 0; j < m; j++)
+    for (int j = 1; j <= m; j++)
     {
-        log("Calling " + to_string(n - 1) + "," + to_string(m) + "," + to_string(k - m));
-        res = (res + dp(n - 1, m, k - m) * ((ll)pow((double)1 + n, (double)j))) % ansMod;
+        log("Calling " + to_string(n - 1) + "," + to_string(m) + "," + to_string(k - j));
+        res = (res + dp(n - 1, m, k - j)) % ansMod;
     }
 
     memo[n][k] = res;
