@@ -64,6 +64,20 @@ ll bigComp(ll x)
     }
 }
 
+ll gcd(ll a, ll b)
+{
+    if (a == 0)
+    {
+        return b;
+    }
+    return gcd(b % a, a);
+}
+
+ll lcm(ll a, ll b)
+{
+    return (a * b) / (gcd(a, b));
+}
+
 int solveProblem()
 {
     ll n, a, b;
@@ -86,15 +100,12 @@ int solveProblem()
         ll bDiv = (n / b);
         bSum = b * bigComp(bDiv);
     }
-    if (a * b <= n)
-    {
-        ll abDiv = (n / (a * b));
-        abSum = a * b * bigComp(abDiv);
-    }
+    ll abDiv = (n / lcm(a, b));
+    abSum = lcm(a, b) * bigComp(abDiv);
 
     result = normalSum - aSum - bSum + abSum;
 
-    cout << result << endl;
+    std::cout << result << endl;
 
     return 0;
 }
