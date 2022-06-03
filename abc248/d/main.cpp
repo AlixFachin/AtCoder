@@ -3,6 +3,7 @@ using namespace std;
 
 #include <vector>
 #include <unordered_set>
+#include <unordered_map>
 typedef long long ll;
 
 // Some hints:
@@ -45,6 +46,18 @@ void logSet(string setName, unordered_set<T> *s)
 #endif
 }
 
+template <typename T>
+void logMap(string mapName, unordered_map<int, T> *m)
+{
+#ifdef TEST
+    cerr << "Content of " + mapName << endl;
+    for (const auto &key_value : *m)
+    {
+        cerr << "  " + to_string(key_value.first) + ": " + to_string(key_value.second) << endl;
+    }
+#endif
+}
+
 void log(string s)
 {
 #ifdef TEST
@@ -55,6 +68,37 @@ void log(string s)
 
 int solveProblem()
 {
+
+    int n;
+
+    // Setting up the parameter
+    cin >> n;
+
+    vector<vector<int>> occurences(n + 1);
+    for (int i = 0; i < n; i++)
+    {
+        int a;
+        cin >> a;
+
+        occurences[a].push_back(i);
+    }
+    // logVector("numbers", &numbers);
+    // logMap("first memo", &memo[0]);
+
+    // Looking for the answer
+    int q;
+    cin >> q;
+
+    for (int i = 0; i < q; i++)
+    {
+        int l, r, x;
+        cin >> l >> r >> x;
+
+        // log("Lower bound: " + to_string(lower_bound(freq.begin(), freq.end(), r) - freq.begin()));
+        // log("Upper bound: " + to_string(lower_bound(freq.begin(), freq.end(), l - 1) - freq.begin()));
+
+        cout << lower_bound(occurences[x].begin(), occurences[x].end(), r) - lower_bound(occurences[x].begin(), occurences[x].end(), l - 1) << endl;
+    }
 
     return 0;
 }
