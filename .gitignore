@@ -19,3 +19,13 @@ makefile
 !/template_cpp/makefile
 
 .vscode
+
+Cargo.toml
+Cargo.lock
+
+sample-*.in
+sample-*.out
+contest.acc.json
+
+*/target/**
+target/
