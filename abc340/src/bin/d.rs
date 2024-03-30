@@ -1,5 +1,5 @@
-use std::{collections::BinaryHeap, path, vec};
-// use pathfinding::directed::dijkstra::dijkstra;
+use std::collections::BinaryHeap;
+use pathfinding::directed::dijkstra::dijkstra;
 
 use proconio::input;
 const DEBUG: bool = true;
@@ -22,7 +22,6 @@ impl Ord for PathData {
     }
 }
 
-
 fn main() {
     input! {
        n: usize,
@@ -37,10 +36,10 @@ fn main() {
 
     // Setup a clean adjacency list
     let mut adjacency_list = vec![vec![];n];
-    for i in 0..(n-1) {
+    for i in 0..n - 1 {
         let (a, b, x) = levels[i];
-        adjacency_list[i].push(((i+1), a));
-        adjacency_list[i].push(((x-1), b));
+        adjacency_list[i].push((i + 1, a));
+        adjacency_list[i].push((x - 1, b));
     }
 
     // Implementing Dijkstra's algorithm
@@ -63,6 +62,6 @@ fn main() {
         }
     }
 
-    println!("{}", dist[n-1]);
-
+    println!("{}", dist[n - 1]);
+    //println!("{}", result.unwrap().1);
 }

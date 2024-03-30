@@ -20,24 +20,19 @@ fn main() {
         outputs.insert(i, i);
     }
 
-    
     for (a, b) in queries {
-        
         if outputs.get(&a).unwrap() == &a {
             outputs.insert(a, b);
         }
-        
         for i in 'a'..='z' {
             if outputs.get(&i).unwrap() == &a {
                 outputs.insert(i, b);
             }
         }
     }
-
     if DEBUG {
         println!("inputs: {:?}", &outputs);
     }
-
     for i in 0..n {
         dest[i] = *outputs.get(&dest[i]).unwrap();
     }

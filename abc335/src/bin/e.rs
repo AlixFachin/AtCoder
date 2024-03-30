@@ -135,61 +135,18 @@ fn main() {
         println!("Adjacency list before merge: {:?}", connections);
     }
 
-    // Now that we built our adjacency list, we need to merge the nodes with similar weights
-    // For this we use a visited list and do a DFS on each node to see which connected nodes have similar weights
-    // We will store each root node into a root table
-    let mut visited = vec![false; n];
-    let mut root = vec![];
-    for i in 0..n {
-        root.push(i);
-    }
-    for i in 0..n {
-        if !visited[i] {
-            let mut stack = vec![i];
-            while let Some(node) = stack.pop() {
-                visited[node] = true;
-                for next_node in &connections[node] {
-                    if !visited[*next_node] && weights[node] == weights[*next_node] {
-                        if DEBUG {
-                            println!("Merging {} and {} through {}", i, *next_node, node);
-                        }
-                        stack.push(*next_node);
-                        root[*next_node] = i;
-                    }
-                }
-            }
-        }
-    }
-
-    if DEBUG {
-        println!("Root list: {:?}", root);
-    }
-
-    // Now we will replace in the adjacency list all the nodes by their roots
-    let mut adjacency_list = vec![vec![]; n];
-    for i in 0..n {
-        for next_node in &connections[i] {
-            if DEBUG {
-                println!("{} -> {} becomes {} -> {}", i, next_node, root[i], root[*next_node]);
-            }
-            if root[i] != root[*next_node] && !adjacency_list[root[i]].contains(&root[*next_node]) {
-                adjacency_list[root[i]].push(root[*next_node]);
-            }
-        }
-    }
-
-    if DEBUG {
-        println!("Adjacency list after merge: {:?}", adjacency_list);
-    }
+    let adjacency_list = connections.clone();
 
     let top_order = get_topological_sort(&adjacency_list);
     if DEBUG {
         println!("Topological sort: {:?}", top_order);
     }
 
-    let mut max_dist_to_node: Vec<i32> = vec![0; n];
-    max_dist_to_node[0] = 1;
-    for node in top_order {
+    let mut max_dist_to_node: Vec<i32> = vec![-1; n];
+    // let's find the index of the starting node
+    let initial_node_index = top_order.iter().position(|&x| x == 0).unwrap();
+    max_dist_to_node[initial_node_index] = 0;
+    for node in initial_node_index..top_order.len() {
         if DEBUG {
             println!("Checking distance with Node: {}", node);
         }
@@ -197,8 +154,11 @@ fn main() {
             if DEBUG {
                 println!("Checking distance with Node: {} (MD={}), next_node: {} (MD={})", node, max_dist_to_node[node],  next_node, max_dist_to_node[*next_node]);
             }
-            if max_dist_to_node[node] + 1 > max_dist_to_node[*next_node] {
-                max_dist_to_node[*next_node] = max_dist_to_node[node] + 1 ;
+
+            let delta_weight = if weights[*next_node] != weights[node] { 1 } else { 0 };
+
+            if max_dist_to_node[node] + delta_weight > max_dist_to_node[*next_node] {
+                max_dist_to_node[*next_node] = max_dist_to_node[node] + delta_weight ;
                 if DEBUG {
                     println!("Updated distance  of next_node: {} (MD={})",next_node, max_dist_to_node[*next_node]);
                 }
@@ -206,5 +166,5 @@ fn main() {
         }
     }
 
-    println!("{}", max_dist_to_node[n - 1] );
+    println!("{}", max_dist_to_node[n - 1] +1 );
 }
